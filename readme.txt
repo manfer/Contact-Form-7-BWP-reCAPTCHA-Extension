@@ -1,6 +1,6 @@
 === Contact Form 7 BWP reCAPTCHA Extension ===
 Contributors: manfer
-Donate link: http://manfersite.tk/cf7bwprecapt
+Donate link: http://manfersite.tk/cf7bwpcapt
 Tags: Contact Form 7, Contact, Contact Form, CAPTCHA, reCAPTCHA, BWP reCAPTCHA
 Requires at least: 2.9
 Tested up to: 3.1.3
