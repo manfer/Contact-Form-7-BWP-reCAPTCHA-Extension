@@ -1,0 +1,208 @@
+# Copyright (C) 2010 Contact Form 7 reCAPTCHA extension
+# This file is distributed under the same license as the Contact Form 7 reCAPTCHA extension package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Contact Form 7 reCAPTCHA extension 0.0.7\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/contact-form-7-bwp-recaptcha-extension"
+"extension\n"
+"POT-Creation-Date: 2011-06-23 17:14:31+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2010-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: includes/CF7reCAPTCHA.class.php:91
+msgid "Theme Options"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:92
+msgid "Theme Preselection"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:93
+msgid "Own Theme (<i>if selected</i>)"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:97
+msgid "General Options"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:98
+msgid "Language Preselection"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:99
+msgid "Own Language (<i>if selected</i>)"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:102
+msgid "DEBUG Options"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:103
+msgid "Reset on Activate"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:107
+msgid ""
+"Here you can set which options to use for the themes option of the WP-"
+"reCAPTCHA forms in the Contact Form 7 forms."
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:111
+msgid ""
+"Here you can do the same with some of the general options of WP-reCAPTCHA."
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:115
+msgid "Some debug options."
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:348 includes/settings.php:10
+msgid "Contact Form 7 Better reCAPTCHA Extension Options"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:348
+msgid "CF7 bwp-reCAPTCHA Extension"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:361 includes/CF7reCAPTCHA.class.php:382
+msgid "Red"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:362 includes/CF7reCAPTCHA.class.php:383
+msgid "White"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:363 includes/CF7reCAPTCHA.class.php:384
+msgid "Black Glass"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:364 includes/CF7reCAPTCHA.class.php:385
+msgid "Clean"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:366 includes/CF7reCAPTCHA.class.php:367
+#: includes/CF7reCAPTCHA.class.php:406
+msgid "currently"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:371
+msgid "WP-reCAPTCHA Comments Theme"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:372
+msgid "WP-reCAPTCHA Registration Theme"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:373
+msgid "Own Theme"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:373 includes/CF7reCAPTCHA.class.php:411
+msgid "select below"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:387
+msgid "Theme"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:397 includes/CF7reCAPTCHA.class.php:420
+msgid "English"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:398 includes/CF7reCAPTCHA.class.php:421
+msgid "Dutch"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:399 includes/CF7reCAPTCHA.class.php:422
+msgid "French"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:400 includes/CF7reCAPTCHA.class.php:423
+msgid "German"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:401 includes/CF7reCAPTCHA.class.php:424
+msgid "Portuguese"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:402 includes/CF7reCAPTCHA.class.php:425
+msgid "Russian"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:403 includes/CF7reCAPTCHA.class.php:426
+msgid "Spanish"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:404 includes/CF7reCAPTCHA.class.php:427
+msgid "Turkish"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:410
+msgid "WP-reCAPTCHA Language"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:411
+msgid "Own Language"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:430
+msgid "Language"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:558
+msgid "Name"
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:561
+msgid "Copy this code and paste it into the form left."
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:581 includes/CF7reCAPTCHA.class.php:593
+msgid "You are using Contact Form 7 reCAPTCHA Extension."
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:582
+msgid ""
+"This works with the Contact Form 7 plugin, but the Contact Form 7 plugin is "
+"not activated."
+msgstr ""
+
+#: includes/CF7reCAPTCHA.class.php:594
+msgid ""
+"This works with the WP-reCAPTCHA plugin, but the WP-reCAPTCHA plugin is not "
+"activated."
+msgstr ""
+
+#: includes/settings.php:31
+msgid "Save Options"
+msgstr ""
+
+#: includes/settings.php:31
+msgid "Save Changes"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Contact Form 7 reCAPTCHA extension"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.a-sd.de/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Provides WP-reCAPTCHA possibilities to the Contact Form 7 plugin. Requires "
+"both."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Andre Pietsch, Advicio (R) ServDesk GmbH"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.a-sd.de"
+msgstr ""

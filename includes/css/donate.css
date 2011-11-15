@@ -1,0 +1,16 @@
+/*
+ * Donate
+ */
+#donate-button {
+	position: relative;
+	padding: 10px;
+	border: 1px dotted;
+	margin: 10px;
+	width: 240px;
+	float: right;
+	text-align: center;
+}
+#donate-text {
+	font-style: italic;
+	margin-bottom: 10px;
+}
