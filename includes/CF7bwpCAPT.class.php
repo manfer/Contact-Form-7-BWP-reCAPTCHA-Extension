@@ -370,7 +370,7 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 				wpcf7_add_tag_generator(
 					'recaptcha',
 					'reCAPTCHA',
-					'cf7recaptcha-tg-pane',
+					'cf7recaptcha-tag-pane',
 					array( &$this, 'tag_pane' )
 				);
 			}
@@ -435,7 +435,7 @@ JSOPTS;
 
 				do_action( 'bwp_capt_before_add_captcha' );
 
-				if ( 'redirect' == $this->options[ 'select_response' ]  && ! is_admin() ) {
+				if ( 'redirect' == $bwp_capt->options[ 'select_response' ]  && ! is_admin() ) {
 					$html .= '<input type="hidden" name="error_redirect_to" value="' . esc_attr_e( $bwp_capt->get_current_comment_page_link() ) . '" />';
 				}
 
