@@ -25,18 +25,18 @@
 	<div class="wrap">
 		<a name="cf7_bwp_capt"></a>
 
-		<h2><?php _e('CF7 BWP reCAPTCHA Extension Options', 'cf7_bwp_capt'); ?></h2>
-
-		<p><?php _e('Contact form 7 better wordpress reCAPTCHA extension let\'s you add a reCAPTCHA to your contact form. Just configure here the look&feel you want for the reCAPTCHA and go to your Contact form 7 configuration page to add a reCAPTCHA tag to your form.', 'cf7_bwp_capt'); ?></p>
+		<h2><?php _e( 'CF7 BWP reCAPTCHA Extension Options', 'cf7_bwp_capt' ); ?></h2>
 
 		<?php settings_errors(); ?>
 
+		<p><?php _e( 'Contact form 7 better wordpress reCAPTCHA extension let\'s you add a reCAPTCHA to your contact form. Just configure here the look&feel you want for the reCAPTCHA and go to your Contact form 7 configuration page to add a reCAPTCHA tag to your form.', 'cf7_bwp_capt' ); ?></p>
+
 		<form method="post" action="options.php">
 
-			<?php settings_fields($this->options_name . '_group'); ?>
+			<?php settings_fields( $this->options_name . '_group' ); ?>
 
-			<?php do_settings_sections($this->options_name . '_page'); ?>
+			<?php do_settings_sections( $this->options_name . '_page' ); ?>
 
-			<p class="submit"><input type="submit" class="button-primary" title="<?php _e('Save Options') ?>" value="<?php _e('Save Changes') ?> &raquo;" /></p>
+			<p class="submit"><input type="submit" class="button-primary" title="<?php _e( 'Save Options' ) ?>" value="<?php _e( 'Save Changes' ) ?> &raquo;" /></p>
 		</form>
 	</div>
