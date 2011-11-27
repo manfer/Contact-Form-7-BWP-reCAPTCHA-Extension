@@ -370,7 +370,7 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 				wpcf7_add_tag_generator(
 					'recaptcha',
 					'reCAPTCHA',
-					'cf7recaptcha-tag-pane',
+					'cf7recaptcha-tg-pane',
 					array( &$this, 'tag_pane' )
 				);
 			}
