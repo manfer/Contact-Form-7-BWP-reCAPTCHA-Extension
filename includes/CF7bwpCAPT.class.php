@@ -8,6 +8,7 @@
 
 
 require_once( 'WPASDPlugin.class.php' );
+require_once( dirname(__FILE__) . '/recaptcha/recaptchalib.php' );
 
 if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 
@@ -174,14 +175,7 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 
 		function require_library() {}
 
-		function register_scripts() {
-			$use_ssl = isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on';
-			if ( $use_ssl ) {
-				$server = RECAPTCHA_API_SECURE_SERVER;
-			} else {
-				$server = RECAPTCHA_API_SERVER;
-			}
-		}
+		function register_scripts() {}
 
 		function register_actions() {
 			global $wp_version;
@@ -417,8 +411,6 @@ var RecaptchaOptions = { theme : '{$used_theme}', lang : '{$used_language}'};
 JSOPTS;
 
 			$html = $js_options;
-
-			require_once( dirname(__FILE__) . '/recaptcha/recaptchalib.php' );
 
 			if ( function_exists( 'recaptcha_get_html' ) && !defined( 'BWP_CAPT_ADDED' ) ) {
 
