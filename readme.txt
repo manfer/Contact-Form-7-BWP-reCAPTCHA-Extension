@@ -4,19 +4,17 @@ Donate link: http://manfersite.tk/cf7bwpcapt
 Tags: Contact Form 7, Contact, Contact Form, CAPTCHA, reCAPTCHA, BWP reCAPTCHA
 Requires at least: 2.9
 Tested up to: 3.1.3
-Stable tag: 0.0.4
+Stable tag: 0.1
 
 This plugin provides a new tag for the Contact Form 7 Plugin. It allows the usage of a reCAPTCHA field provided by the BWP reCAPTCHA Plugin.
 
 == Description ==
 
-Contact Form 7 is an excellent WordPress plugin and the CF7 BWP reCAPTCHA Plugin makes it even more awesome by adding reCAPTCHA capabilities.
-In the past this functionality has been provided by a recaptcha module offered by the developer of CF7 which this plugin is based on. 
+Contact Form 7 is an excellent WordPress plugin but its captcha functionality is limited to a simple captcha.
 
-The Problem with the module was that it had to be copied into the modules directory every time the Contact Form 7 plugin was updated. 
-That was bad.
+CF7 BWP reCAPTCHA Plugin adds reCAPTCHA capabilities to contact form 7.
 
-This plugin can be installed and mantained independedly from the CF7 plugin and its modules.
+This plugin is the result of the study on how CF7 API, WP APIs and BWP Captcha plugin works, in order to code the necessary hooks to add recaptcha to CF7, including a settings page to configure the theme and language you want to use.
 
 = Requirements =
 
@@ -66,6 +64,9 @@ If you like the plugin **please rate** it. If you don't like it, **please contac
 
 
 == Changelog ==
+
+= 0.1 (20111217) =
+* Total rewrite to stop using some code I don't want to use anymore.
 
 = 0.0.4 (20111130) =
 * FIX: Bug on register_scripts.

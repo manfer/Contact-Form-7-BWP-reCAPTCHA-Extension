@@ -1,6 +1,6 @@
 <?php
 
-	if ( defined('ALLOW_INCLUDE') === false )
+	if ( defined('ALLOW_CF7_BWP_CAPT_INCLUDE') === false )
 		die( 'no direct access' );
 
 	function show_donation() {
