@@ -275,8 +275,6 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 		 */
 		function validate_options( $input ) {
 			
-			print_r($input);
-
 			// Allowed values
 			$theme_selections = array(
 				'bwp_capt', // if the theme for better recaptcha is used
@@ -289,24 +287,19 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 				$input[ 'select_theme' ]
 			);
 
-			if ( $validated[ 'select_theme' ] === 'cf7' ) {
-	    
-				// Allowed values
-				$themes = array(
-					'red',
-					'white',
-					'blackglass',
-					'clean'
-				);
+			// Allowed values
+			$themes = array(
+				'red',
+				'white',
+				'blackglass',
+				'clean'
+			);
 
-				$validated[ 'cf7_theme' ] = $this->validate_option(
-					$themes,
-					'cf7_theme',
-					$input[ 'cf7_theme' ]
-				);
-			} else {
-				$validated[ 'cf7_theme' ] = $this->options[ 'cf7_theme' ];
-			}	    
+			$validated[ 'cf7_theme' ] = $this->validate_option(
+				$themes,
+				'cf7_theme',
+				$input[ 'cf7_theme' ]
+			);
 
 			// Allowed values
 			$language_selections = array (
@@ -320,28 +313,23 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 				$input[ 'select_lang' ]
 			);
 
-			if ( $validated[ 'select_lang' ] === 'cf7' ) {
+			// Allowed values
+			$recaptcha_languages = array(
+				'en',
+				'nl',
+				'fr', 
+				'de',
+				'pt',
+				'ru',
+				'es',
+				'tr'
+			);
 
-				// Allowed values
-				$recaptcha_languages = array(
-					'en',
-					'nl',
-					'fr', 
-					'de',
-					'pt',
-					'ru',
-					'es',
-					'tr'
-				);
-
-				$validated[ 'cf7_lang' ] = $this->validate_option(
-					$recaptcha_languages,
-					'cf7_lang',
-					$input[ 'cf7_lang' ]
-				);
-			} else {
-				$validated[ 'cf7_lang' ] = $this->options['cf7_lang'];
-			}
+			$validated[ 'cf7_lang' ] = $this->validate_option(
+				$recaptcha_languages,
+				'cf7_lang',
+				$input[ 'cf7_lang' ]
+			);
 
 			return $validated;
 		}
