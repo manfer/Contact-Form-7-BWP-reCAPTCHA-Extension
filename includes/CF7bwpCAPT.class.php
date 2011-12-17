@@ -408,8 +408,6 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 		 */
 		function shortcode_handler( $tag ) {
 
-			print_r("I'm running");
-
 			global $wpcf7_contact_form, $bwp_capt;
 
 			if ( $bwp_capt->user_can_bypass() ) return '';
