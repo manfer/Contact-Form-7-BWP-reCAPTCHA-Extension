@@ -172,7 +172,8 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 				'red'        => __( 'Red',         $this->textdomain ),
 				'white'      => __( 'White',       $this->textdomain ),
 				'blackglass' => __( 'Black Glass', $this->textdomain ),
-				'clean'      => __( 'Clean',       $this->textdomain )
+				'clean'      => __( 'Clean',       $this->textdomain ),
+				'custom'     => __( 'Custom',      $this->textdomain )
 			);
 
 			$bwp_capt_theme = ( is_array( $bwp_capt_options ) && isset( $bwp_capt_options[ 'select_theme' ] ) ) ? ' (' . __( 'currently', $this->textdomain ) . ': <i>' . $available_themes[ $bwp_capt_options[ 'select_theme' ] ] . '</i>)' : '';
@@ -196,7 +197,8 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 				__( 'Red',         $this->textdomain ) => 'red',
 				__( 'White',       $this->textdomain ) => 'white',
 				__( 'Black Glass', $this->textdomain ) => 'blackglass',
-				__( 'Clean',       $this->textdomain ) => 'clean'
+				__( 'Clean',       $this->textdomain ) => 'clean',
+				__( 'Custom',      $this->textdomain ) => 'custom'
 			);
 
 			echo '<label for="' . $this->options_name . '[cf7_theme]">' . __( 'Theme', $this->textdomain ) . ":</label>\n";     
@@ -292,7 +294,8 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 				'red',
 				'white',
 				'blackglass',
-				'clean'
+				'clean',
+				'custom'
 			);
 
 			$validated[ 'cf7_theme' ] = $this->validate_option(
@@ -410,74 +413,41 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 
 			global $wpcf7_contact_form, $bwp_capt;
 
-			if ( $bwp_capt->user_can_bypass() ) return '';
-
 			$name = $tag[ 'name' ];
 
-			// Get Better Wordpress Recaptcha options to obtain current language
-			$bwp_capt_options = get_option( 'bwp_capt_theme' );
+			// set bwp recaptcha options to cf7 bwp recaptcha options
+			$bwp_capt_theme = $bwp_capt->options['select_theme'];
+			$bwp_capt_lang  = $bwp_capt->options['select_lang'];
 
-			// default options if not configured
-			$used_theme = 'red';
-			$used_language = 'en';
-
-			if ( $this->options[ 'select_theme' ] === 'bwp_capt' 
-			&& isset( $bwp_capt_options[ 'select_theme' ] ) ) {
-				$used_theme = $bwp_capt_options[ 'select_theme' ];
-			} elseif ( $this->options[ 'select_theme' ] === 'cf7' 
+			if ( $this->options[ 'select_theme' ] === 'cf7' 
 			&& isset( $this->options[ 'cf7_theme' ] ) ) {
-				$used_theme = $this->options[ 'cf7_theme' ];
+				$bwp_capt->options['select_theme'] = $this->options[ 'cf7_theme' ];
 			}
 
-			if ( $this->options[ 'select_lang' ] === 'bwp_capt' 
-			&& isset( $bwp_capt_options[ 'select_lang' ] ) ) {
-				$used_language = $bwp_capt_options[ 'select_lang' ];
-			} elseif ( $this->options[ 'select_lang' ] === 'cf7' 
+			if ( $this->options[ 'select_lang' ] === 'cf7' 
 			&& isset( $this->options[ 'cf7_lang' ] ) ) {
-				$used_language = $this->options[ 'cf7_lang' ];
+				$bwp_capt->options['select_lang'] = $this->options[ 'cf7_lang' ];
 			}
 
-			$js_options = <<<JSOPTS
-<script type='text/javascript'>
-var RecaptchaOptions = { theme : '{$used_theme}', lang : '{$used_language}'};
-</script>
-JSOPTS;
+			// add_recaptcha function outputs directly so we have to buffer
+			// that to store it in a variable instead.
+			ob_start();
+			$bwp_capt->add_recaptcha();
+			$html = ob_get_contents();
+			ob_end_clean();
 
-			$html = $js_options;
+			// restore bwp recaptcha options
+			$bwp_capt->options['select_theme'] = $bwp_capt_theme;
+			$bwp_capt->options['select_lang']  = $bwp_capt_lang;
 
-			if ( function_exists( 'recaptcha_get_html' ) && !defined( 'BWP_CAPT_ADDED' ) ) {
-
-				// make sure we add only one recaptcha instance
-				define( 'BWP_CAPT_ADDED', true );
-
-				$captcha_error = '';
-				if ( ! empty( $_GET[ 'cerror' ] ) && 'incorrect-captcha-sol' == $_GET[ 'cerror' ] )
-					$captcha_error = $_GET[ 'cerror' ];
-
-				if ( ! empty( $_SESSION[ 'bwp_capt_akismet_needed' ]) && 'yes' == $_SESSION[ 'bwp_capt_akismet_needed' ] ) {
-					$html .= '<p class="bwp-capt-spam-identified">' . _e( 'Your comment was identified as spam, please complete the CAPTCHA below:', 'bwp-recaptcha' ) . '</p>';
-				}
-
-				do_action( 'bwp_capt_before_add_captcha' );
-
-				if ( 'redirect' == $bwp_capt->options[ 'select_response' ]  && ! is_admin() ) {
-					$html .= '<input type="hidden" name="error_redirect_to" value="' . esc_attr_e( $bwp_capt->get_current_comment_page_link() ) . '" />';
-				}
-
-				$use_ssl = ( isset( $_SERVER[ 'HTTPS' ]) && 'on' == $_SERVER[ 'HTTPS' ] ) ? true : false;
-				if ( ! empty( $bwp_capt->options[ 'input_pubkey' ] ) )
-					$html .= recaptcha_get_html( $bwp_capt->options[ 'input_pubkey' ], $captcha_error, $use_ssl );
-				elseif ( current_user_can( 'manage_options' ) )
-					$html .= _e( "To use reCAPTCHA you must get an API key from <a href='https://www.google.com/recaptcha/admin/create'>https://www.google.com/recaptcha/admin/create</a>", 'bwp-recaptcha' );
-			}
 
 			$validation_error = '';
 			if ( is_a( $wpcf7_contact_form, 'WPCF7_ContactForm' ) )
-			$validation_error = $wpcf7_contact_form->validation_error( $name );
+				$validation_error = $wpcf7_contact_form->validation_error( $name );
 
 			$html .= '<span class="wpcf7-form-control-wrap ' . $name . '">' . $validation_error . '</span>';
-
 			return $html;
+
 		}
 
 		/**
