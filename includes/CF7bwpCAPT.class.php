@@ -39,8 +39,6 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 			$this->options = get_option( $options );
 			$this->requirements_met = $this->meets_requirements();
 
-			require_once( dirname(__FILE__) . '/recaptcha/recaptchalib.php' );
-
 			// register settings page
 			add_action( 'admin_init', array( &$this, 'register_settings_group' ) );
 			add_action( 'admin_menu', array( &$this, 'register_settings_page' ) );
@@ -421,6 +419,7 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 			$bwp_capt_theme = $bwp_capt->options['select_theme'];
 			$bwp_capt_lang  = $bwp_capt->options['select_lang'];
 
+			// override bwp recaptcha options with cf7 bwp recaptcha ones when needed
 			if ( $this->options[ 'select_theme' ] === 'cf7' 
 			&& isset( $this->options[ 'cf7_theme' ] ) ) {
 				$bwp_capt->options['select_theme'] = $this->options[ 'cf7_theme' ];
@@ -431,8 +430,12 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 				$bwp_capt->options['select_lang'] = $this->options[ 'cf7_lang' ];
 			}
 
-			// add_recaptcha function outputs directly so we have to buffer
-			// that to store it in a variable instead.
+			// load recaptcha library
+			if ( ! defined( 'RECAPTCHA_API_SERVER' ) )
+				require_once( plugin_dir_path( $bwp_capt->plugin_file ) . 'includes/recaptcha/recaptchalib.php' );
+
+			// add_recaptcha echoes so we have to buffer its output
+			// to store it in a variable instead.
 			ob_start();
 			$bwp_capt->add_recaptcha();
 			$html = ob_get_contents();

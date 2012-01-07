@@ -4,7 +4,7 @@ Donate link: http://manfersite.tk/cf7bwpcapt
 Tags: Contact Form 7, Contact, Contact Form, CAPTCHA, reCAPTCHA, BWP reCAPTCHA
 Requires at least: 2.9
 Tested up to: 3.1.3
-Stable tag: 0.4
+Stable tag: 0.5
 
 This plugin provides a new tag for the Contact Form 7 Plugin. It allows the usage of a reCAPTCHA field provided by the BWP reCAPTCHA Plugin.
 
@@ -64,6 +64,9 @@ If you like the plugin **please rate** it. If you don't like it, **please contac
 
 
 == Changelog ==
+
+= 0.5 (20120107) =
+* Fixed breaks BWP Recaptcha registration form feature.
 
 = 0.4 (20120107) =
 * Fixed hide for qualified users feature.
