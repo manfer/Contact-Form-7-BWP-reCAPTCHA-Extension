@@ -413,6 +413,8 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 
 			global $wpcf7_contact_form, $bwp_capt;
 
+			if ( $bwp_capt->user_can_bypass() ) return '';
+
 			$name = $tag[ 'name' ];
 
 			// set bwp recaptcha options to cf7 bwp recaptcha options
