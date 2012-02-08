@@ -513,13 +513,8 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 		 * Check if BWP recaptcha plugin is active
 		 */
 		function check_bwp_capt() {
-			$this->is_bwp_capt_active = in_array( 
-				'bwp-recaptcha/bwp-recaptcha.php', 
-				apply_filters( 
-					'active_plugins', 
-					get_option( 'active_plugins' )
-				)
-			);
+			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			$this->is_bwp_capt_active = is_plugin_active('bwp-recaptcha/bwp-recaptcha.php');
 			return $this->is_bwp_capt_active;
 		}
 
@@ -527,13 +522,8 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 		 * Check if Contact Form 7 plugin is active
 		 */
 		function check_cf7() {
-			$this->is_cf7_active = in_array( 
-				'contact-form-7/wp-contact-form-7.php', 
-				apply_filters(
-					'active_plugins', 
-					get_option( 'active_plugins' )
-				)
-			);
+			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			$this->is_cf7_active = is_plugin_active('contact-form-7/wp-contact-form-7.php');
 			return $this->is_cf7_active;
 		}
 
