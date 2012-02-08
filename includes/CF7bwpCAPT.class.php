@@ -5,7 +5,7 @@
  * http://wordpress.org/extend/plugins/bwp-recaptcha/
  * http://wordpress.org/extend/plugins/contact-form-7/
  */
-
+define('BWP_CAPT_OPTION_CF7', 'bwp_capt_cf7');
 
 if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 
