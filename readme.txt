@@ -65,6 +65,9 @@ If you like the plugin **please rate** it. If you don't like it, **please contac
 
 == Changelog ==
 
+= 0.7 (2012xxxx) =
+* Fixed notice because menu_slug undefined.
+
 = 0.6 (20120208) =
 * Fixed for multisite wordpress.
 
