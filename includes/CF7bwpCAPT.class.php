@@ -349,7 +349,7 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 		 */
 
 		function ajax_json_echo_filter( $items ) {
-			if ( ! is_array( $items[ 'onSubmit' ] ) )
+			if ( ! isset( $items[ 'onSubmit' ] ) || ! is_array( $items[ 'onSubmit' ] ) )
 				$items[ 'onSubmit' ] = array();
 
 			$items[ 'onSubmit' ][] = 'if (typeof Recaptcha != "undefined") { Recaptcha.reload(); }';
