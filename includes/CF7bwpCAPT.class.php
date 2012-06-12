@@ -12,9 +12,6 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 	class CF7bwpCAPT {
 
 		// member variables
-		private $requirements_met;
-		private $is_bwp_capt_active;
-		private $is_cf7_active;
 		private $textdomain;
 		private $options_name;
 		private $options;
@@ -37,7 +34,6 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 
 			$this->options_name = $options;
 			$this->options = get_option( $options );
-			$this->requirements_met = $this->meets_requirements();
 
 			// register settings page
 			add_action( 'admin_init', array( &$this, 'register_settings_group' ) );
@@ -48,13 +44,13 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 			add_action( 'admin_notices', array( &$this, 'admin_notice' ) );
 
 			// register tag generator
-			if ( $this->requirements_met ) {
+			if ( $this->meets_requirements() ) {
 				add_action( 'admin_init', array( &$this, 'tag_generator_recaptcha' ), 46 );
 				add_action( 'admin_init', array( &$this, 'cf7_bwp_capt_register_styles' ) );
 			}
 
 			// register validation filter
-			if ( $this->requirements_met ) {
+			if ( $this->meets_requirements() ) {
 				add_filter( 'wpcf7_validate_recaptcha', array( &$this, 'recaptcha_validation_filter' ), 10, 2 );
 				add_filter( 'wpcf7_ajax_json_echo', array( &$this, 'ajax_json_echo_filter' ) );
 			}
@@ -68,7 +64,7 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 		 * Register CF7 recaptcha shortcode
 		 */
 		function register_cf7_shortcode() {
-			if ( function_exists( 'wpcf7_add_shortcode' ) && $this->requirements_met ) {
+			if ( function_exists( 'wpcf7_add_shortcode' ) && $this->meets_requirements() ) {
 				wpcf7_add_shortcode( 'recaptcha', array( &$this, 'shortcode_handler' ), true );	
 			}
 		}
@@ -394,7 +390,7 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 		 * Shortcode generator registration
 		 */
 		function tag_generator_recaptcha() {
-			if ( function_exists( 'wpcf7_add_tag_generator' ) && $this->requirements_met ) {
+			if ( function_exists( 'wpcf7_add_tag_generator' ) && $this->meets_requirements() ) {
 				wpcf7_add_tag_generator(
 					'recaptcha', // name
 					'reCAPTCHA', // display name
@@ -464,7 +460,7 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 				<form action="">
 					<table>
 
-					<?php if ( ! $this->requirements_met ) : ?>
+					<?php if ( ! $this->meets_requirements() ) : ?>
 						<tr>
 							<td colspan="2">
 								<strong style="color: #e6255b">you need reCAPTCHA</strong>
@@ -502,29 +498,35 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 		 * Check if requirements are met
 		 */
 		function meets_requirements() {
-			if ( ! isset( $this->requirements_met ) ) {
-				$this->requirements_met = $this->check_bwp_capt() && $this->check_cf7();
+			static $requirements_met;
+			if ( ! isset( $requirements_met ) ) {
+				$requirements_met = $this->check_bwp_capt() && $this->check_cf7();
 			}
-
-			return $this->requirements_met;
+			return $requirements_met;
 		}
 
 		/**
 		 * Check if BWP recaptcha plugin is active
 		 */
 		function check_bwp_capt() {
-			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-			$this->is_bwp_capt_active = is_plugin_active('bwp-recaptcha/bwp-recaptcha.php');
-			return $this->is_bwp_capt_active;
+			static $is_bwp_capt_active;
+			if ( ! isset( $is_bwp_capt_active ) ) {
+				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+				$is_bwp_capt_active = is_plugin_active('bwp-recaptcha/bwp-recaptcha.php');
+			}
+			return $is_bwp_capt_active;
 		}
 
 		/**
 		 * Check if Contact Form 7 plugin is active
 		 */
 		function check_cf7() {
-			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-			$this->is_cf7_active = is_plugin_active('contact-form-7/wp-contact-form-7.php');
-			return $this->is_cf7_active;
+			static $is_cf7_active;
+			if ( ! isset( $is_cf7_active ) ) {
+				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+				$is_cf7_active = is_plugin_active('contact-form-7/wp-contact-form-7.php');
+			}
+			return $is_cf7_active;
 		}
 
 		/**
@@ -533,7 +535,7 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 		function admin_notice() {
 			global $plugin_page;
 
-			if ( ! $this->is_cf7_active ) :
+			if ( ! $this->check_cf7() ) :
 ?>
 
 				<div id="message" class="updated fade">
@@ -546,7 +548,7 @@ if ( ! class_exists( 'CF7bwpCAPT' ) ) {
 <?php
 			endif;
 
-			if ( ! $this->is_bwp_capt_active ) :
+			if ( ! $this->check_bwp_capt() ) :
 
 ?>
 
