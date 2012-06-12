@@ -3,7 +3,7 @@
 Plugin Name: Contact Form 7 BWP reCAPTCHA Extension
 Plugin URI: http://www.manfersite.tk/cf7bwpcapt
 Description: Provides Better WordPress reCAPTCHA possibilities to the Contact Form 7 plugin. Requires both.
-Version: 0.7
+Version: 0.8
 Author: Fernando San Julián
 Email: manfer.site@gmail.com
 Author URI: http://www.manfersite.tk
@@ -30,7 +30,7 @@ License: GPL2
 
 // this is the 'driver' file that instantiates the object
 define( 'ALLOW_CF7_BWP_CAPT_INCLUDE', true );
-define( 'CF7BWPRECAPT_VERSION', '0.7' );
+define( 'CF7BWPRECAPT_VERSION', '0.8' );
 define( 'CF7BWPRECAPT_URL', 'http://www.manfersite.tk/cf7bwpcapt' );
 define( 'CF7BWPRECAPT_TITLE', 'Contact Form 7 BWP reCAPTCHA Extension' );
 
